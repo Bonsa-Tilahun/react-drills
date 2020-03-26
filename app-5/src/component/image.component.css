@@ -1,0 +1,17 @@
+.container {
+    width: 80%;
+    height: 100%;
+    margin: 0 10%;
+    color: white;
+}
+
+.image-container {
+    width: 100%;
+    height: 80%;
+    border: 3px solid white;
+}
+
+.imageSentIn {
+    width: auto;
+    height: 60vh;
+}

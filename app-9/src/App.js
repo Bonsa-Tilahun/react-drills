@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom'
 import './App.css';
+import Header from './Components/Header.component';
+import SignUp from './Pages/Signup.component';
+import Detail from './Pages/Details.component';
+import HomePage from './Pages/Homepage.component';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            userLogIn: false
+        }
+    }
+
+    handleLogInLogOut = () =>{
+      this.setState({
+        userLogIn: !this.state.userLogIn
+      })
+    }
+
+    render(){
+      return(
+        <div className="App">
+          <Header userLoggedIn={this.state.userLogIn} handleLogInLogOut={this.handleLogInLogOut}/>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/detail' component={Detail} />
+            <Route exact path='/signIn' component={SignUp} />
+          </Switch>
+        </div>
+      )
+    }
 }
 
 export default App;

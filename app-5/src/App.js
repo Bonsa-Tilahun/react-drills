@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Image from './component/Image.component'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super()
+    this.state={
+      imgUrl: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.hancleClick = this.hancleClick.bind(this)
+  }
+
+  handleChange(e){
+    this.setState({
+      imgUrl: e.target.value
+    })
+  }
+  hancleClick(){
+    this.setState({
+      imgUrl:''
+    })
+  }
+  render(){
+    return(
+      <div className="App">
+        <input type="text" placeholder="Image URL" onChange={this.handleChange}/>
+        <button onClick={this.hancleClick}>Clear Image</button>
+        {
+          this.state.imgUrl !== ''?
+          <Image imgUrl={this.state.imgUrl}/>
+          : null
+        }
+        
+      </div>
+    )
+  }
 }
 
 export default App;
